@@ -56,12 +56,9 @@ def complete_task(task_id: int) -> dict[str, Any] | None:
 
     for index, task in enumerate(tasks):
         if task["id"] == task_id:
-            updated_task = dict(task)
-            updated_task["status"] = "done"
-            updated_task["completed_at"] = datetime.now(timezone.utc).isoformat()
-
-            tasks[index] = updated_task
+            task["status"] = "done"
+            task["completed_at"] = datetime.now(timezone.utc).isoformat()
             save_tasks(tasks)
-            return updated_task
+            return task
 
     return None
